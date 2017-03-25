@@ -9,6 +9,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeTrue;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -54,5 +57,15 @@ import static org.mockito.Mockito.verify;
     System.out.println("Maxibons left: " + karumiHQs.getMaxibonsLeft());
     verify(mockChat, never()).sendMessage(
         "Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
+  }
+
+  @Property(trials = 5)
+  public void messageIsSentWhenThereAreLessThanTwoMaxibonsAndSeveralDevelopers(
+      List<@From(HungryDevelopersGenerator.class) Developer> developers) {
+    assumeTrue(developers.size() > 0);
+    System.out.println(developers);
+    karumiHQs.openFridge(developers);
+    System.out.println("Maxibons left: " + karumiHQs.getMaxibonsLeft());
+    verify(mockChat, atLeastOnce()).sendMessage(anyString());
   }
 }
