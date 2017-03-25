@@ -3,6 +3,7 @@ package com.karumi.maxibonkata;
 import com.pholser.junit.quickcheck.From;
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
+import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
@@ -20,6 +21,13 @@ import static org.junit.Assert.assertTrue;
       @From(NotSoHungryDevelopersGenerator.class) Developer developer) {
     System.out.println("Maxibons left: " + karumiHQs.getMaxibonsLeft());
     karumiHQs.openFridge(developer);
+    assertTrue(karumiHQs.getMaxibonsLeft() > 2);
+  }
+
+  @Property public void theNumberOfMaxibonsIsAlwaysGreaterThanTwoWhenSeveralDevelopers(
+      List<@From(NotSoHungryDevelopersGenerator.class) Developer> developers) {
+    System.out.println("Maxibons left: " + karumiHQs.getMaxibonsLeft());
+    karumiHQs.openFridge(developers);
     assertTrue(karumiHQs.getMaxibonsLeft() > 2);
   }
 }
