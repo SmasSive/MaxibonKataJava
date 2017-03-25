@@ -9,7 +9,8 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnitQuickcheck.class) public class KarumiHQsProperties {
 
-  @Property public void theNumberOfMaxibonsIsAlwaysGreaterThanTwo(@From(DevelopersGenerator.class) Developer developer) {
+  @Property public void theNumberOfMaxibonsIsAlwaysGreaterThanTwo(
+      @From(DevelopersGenerator.class) Developer developer) {
     KarumiHQs karumiHQs = new KarumiHQs();
     karumiHQs.openFridge(developer);
     assertTrue(karumiHQs.getMaxibonsLeft() > 2);
