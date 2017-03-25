@@ -26,8 +26,8 @@ import static org.junit.Assert.assertTrue;
 
   @Property public void theNumberOfMaxibonsIsAlwaysGreaterThanTwoWhenSeveralDevelopers(
       List<@From(NotSoHungryDevelopersGenerator.class) Developer> developers) {
-    System.out.println("Maxibons left: " + karumiHQs.getMaxibonsLeft());
     karumiHQs.openFridge(developers);
+    System.out.println("Maxibons left: " + karumiHQs.getMaxibonsLeft());
     assertTrue(karumiHQs.getMaxibonsLeft() > 2);
   }
 }

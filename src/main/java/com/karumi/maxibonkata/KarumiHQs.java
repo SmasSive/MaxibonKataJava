@@ -39,13 +39,13 @@ public class KarumiHQs {
   }
 
   public void openFridge(List<Developer> developers) {
-    for (Developer developer : developers) {
+    developers.forEach(developer -> {
       grabMaxibons(developer);
       if (shouldBuyMoreMaxibons()) {
         notifyWeShouldBuyMaxibon(developer);
         buyMaxibons();
       }
-    }
+    });
   }
 
   private void grabMaxibons(Developer developer) {
