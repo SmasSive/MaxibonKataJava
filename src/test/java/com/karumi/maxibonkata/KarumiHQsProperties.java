@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -44,7 +43,8 @@ import static org.mockito.Mockito.verify;
     System.out.println(developer);
     karumiHQs.openFridge(developer);
     System.out.println("Maxibons left: " + karumiHQs.getMaxibonsLeft());
-    verify(mockChat).sendMessage(anyString());
+    verify(mockChat).sendMessage(
+        "Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
   }
 
   @Property(trials = 5) public void messageIsNotSentWhenThereAreLessThanTwoMaxibons(
@@ -52,6 +52,7 @@ import static org.mockito.Mockito.verify;
     System.out.println(developer);
     karumiHQs.openFridge(developer);
     System.out.println("Maxibons left: " + karumiHQs.getMaxibonsLeft());
-    verify(mockChat, never()).sendMessage(anyString());
+    verify(mockChat, never()).sendMessage(
+        "Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
   }
 }
